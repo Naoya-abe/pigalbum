@@ -1,10 +1,14 @@
 import React from 'react';
+import axios from 'axios';
 
 import SearchBar from './SearchBar';
 
 class App extends React.Component {
   onSearchSubmit = term => {
-    console.log(term);
+    const API_KEY = process.env.REACT_APP_PIXABAY_APIKEY;
+    axios.get(`https://pixabay.com/api/?key=${API_KEY}`, {
+      params: {q: term},
+    });
   };
 
   render() {
