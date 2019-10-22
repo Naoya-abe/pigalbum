@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import pixabay from '../api/pixabay';
 
 import SearchBar from './SearchBar';
 
@@ -9,13 +9,9 @@ class App extends React.Component {
   onSearchSubmit = async term => {
     const API_KEY = process.env.REACT_APP_PIXABAY_APIKEY;
     try {
-      const response = await axios.get(
-        `https://pixabay.com/api/?key=${API_KEY}`,
-        {
-          params: {q: term},
-        }
-      );
-      console.log(response.data.hits);
+      const response = await pixabay.get(`/?key=${API_KEY}`, {
+        params: {q: term},
+      });
       this.setState({images: response.data.hits});
     } catch {
       window.alert('写真の取得に失敗しました。');
