@@ -26,13 +26,7 @@ class App extends React.Component {
     return (
       <div className="ui container" style={{marginTop: '10px'}}>
         <SearchBar onSubmit={this.onSearchSubmit} />
-        {this.state.images.map(image => (
-          <ImageList
-            key={image.id}
-            imageURL={image.webformatURL}
-            pageURL={image.pageURL}
-          />
-        ))}
+        <ImageList images={this.state.images} />
       </div>
     );
   }
