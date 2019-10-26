@@ -1,15 +1,22 @@
 import React from 'react';
+import Masonry from 'react-masonry-component';
+
+import ImageCard from './ImageCard';
+import '../styles/ImageList.css';
 
 const ImageList = props => {
   const images = props.images.map(image => {
     return (
-      <a href={image.pageURL} key={image.id} className="ui medium image">
-        <img src={image.webformatURL} alt={image.tags} />
-      </a>
+      <ImageCard
+        link={image.pageURL}
+        key={image.id}
+        image={image.webformatURL}
+        tag={image.tags}
+      />
     );
   });
 
-  return <div>{images}</div>;
+  return <Masonry className="image-list">{images}</Masonry>;
 };
 
 export default ImageList;
